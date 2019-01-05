@@ -7,7 +7,7 @@ const spotify = new Spotify(keys.spotify);
 
 let [node, file, command, ...args] = process.argv;
 
-let commandHandler = {
+const commandHandler = {
     'movie-this': movie,
     'spotify-this-song': spotifyThis,
     'do-what-it-says': doWhatItSays
@@ -15,12 +15,12 @@ let commandHandler = {
 }
 
 let commandToExecute = commandHandler[command];
-checkCommand();
-function checkCommand() {
+checkCommand(commandToExecute, args);
+function checkCommand(isCommandFuncValid, argsArray) {
 
-    if (commandToExecute) {
+    if (isCommandFuncValid) {
         //We have a valid function.
-        commandToExecute(args.join('+'));
+        isCommandFuncValid(argsArray.join('+'));
 
     }
     else {
@@ -83,27 +83,17 @@ function doWhatItSays() {
         //seperate the string at the comma into an array of substrings
         splitData = data.split(",");
 
-
-        //the first item in the splitData array equals to the process.argv third item
-        process.argv[2] = splitData[0];
-
-
-        //the second item in the splitData array equals to the process.argv fourth item
-        process.argv[3] = splitData[1];
-        //process.argv
-        [node, file, command, ...args] = process.argv;
-
-        //object holding function instance for the movie and spotifyThis function
-        commandHandler = {
-            'movie-this': movie,
-            'spotify-this-song': spotifyThis,
+        //the command equals to the first item in the splitData array
+        const command = splitData[0];
 
 
-        }
-        //commandToExecute equals to value of the object properties
+        //args equals to second item in the splitData array
+        const argsFromFile = splitData.slice(1, 2);
+
+        //commandToExecute equals to value of the object properties of CommandHandler
         commandToExecute = commandHandler[command];
         //call checkCommand function
-        checkCommand();
+        checkCommand(commandToExecute, argsFromFile);
 
     })
 }
