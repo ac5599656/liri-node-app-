@@ -16,7 +16,7 @@ If no song or movie is inputted, the song is defaulted to 'The Sign' by Ace of B
 ## To Get Started
 
 Users can start by going to the liri.js and go to the terminal for liri.js. Then users input the command that they want, described above in the summary: node liri.js movie-this 'movie name', node liri.js spotify-this-song 'song name', or node liri.js do-what-it-says.
-The video link below shows how to use the liri.js. Screenshots are also provided below for further use
+The video link below shows how to use the liri.js. Screenshots are also provided below for further use.
 
 ## URL
 
