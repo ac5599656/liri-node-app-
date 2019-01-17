@@ -16,14 +16,14 @@ const commandHandler = {
 
 let commandToExecute = commandHandler[command];
 checkCommand(commandToExecute, args);
+
 function checkCommand(isCommandFuncValid, argsArray) {
 
     if (isCommandFuncValid) {
         //We have a valid function.
         isCommandFuncValid(argsArray.join('+'));
 
-    }
-    else {
+    } else {
         //They did not give us valid input
         console.log('That is not a command I handle.');
     }
@@ -31,23 +31,32 @@ function checkCommand(isCommandFuncValid, argsArray) {
 
 //Function for spotify-this-song 
 function spotifyThis(songName) {
-    spotify.search({ type: 'track', query: songName || 'The+Sign+Ace+of+Base', limit: 1 }, function (err, data) {
+    spotify.search({
+        type: 'track',
+        query: songName || 'The+Sign+Ace+of+Base',
+        limit: 1
+    }, function (err, data) {
         if (err) {
             return console.log('Error occurred: ' + err);
         }
         //retrieve song name, preview url, album
-        const { items } = data.tracks;
+        const {
+            items
+        } = data.tracks;
         items.forEach(item =>
             console.log(`Name of the song: ${item.name} \n Preview Url: ${item.preview_url}\n Album: ${item.album.name}`)
         );
         //retrieve artist
-        const { artists } = data.tracks.items[0];
+        const {
+            artists
+        } = data.tracks.items[0];
         artists.forEach(artist => console.log(`Artist: ${artist.name}`)
 
         );
     });
 
 }
+
 function movie(movieName) {
     // Then run a request with axios to the OMDB API with the movie specified
     var queryUrl = `http://www.omdbapi.com/?t=${movieName || 'Mr. Nobody'}&y=&plot=short&apikey=trilogy`;
@@ -55,7 +64,16 @@ function movie(movieName) {
     axios.get(queryUrl)
         .then((result) => {
 
-            const { Title, Year, imdbRating, Country, Language, Ratings, Plot, Actors } = result.data;
+            const {
+                Title,
+                Year,
+                imdbRating,
+                Country,
+                Language,
+                Ratings,
+                Plot,
+                Actors
+            } = result.data;
             const rottenRating = Ratings.filter(rating => rating.Source === 'Rotten Tomatoes');
 
             // console.log(rottenRating[0].Value);
@@ -74,7 +92,7 @@ function movie(movieName) {
         })
 }
 
-//    * `do-what-it-says` function
+//* `do-what-it-says` function
 function doWhatItSays() {
 
     //read from the file random.txt    
@@ -97,4 +115,3 @@ function doWhatItSays() {
 
     })
 }
-
