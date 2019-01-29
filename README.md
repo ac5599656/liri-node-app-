@@ -37,7 +37,7 @@ Example of how to use do-what-it-says command
 
 ## More Info On Liri-Node-App
 
-This app is updated and maintaned by the Github user ac5599656. If you have further questions, you can email
+This app is updated and maintained by the Github user ac5599656. If you have further questions, you can email
 ac5599656@gmail.com
 
 ## Technology Used

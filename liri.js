@@ -64,7 +64,7 @@ function movie(movieName) {
     // Then create a request with axios to the queryUrl
     axios.get(queryUrl)
         .then((result) => {
-
+            console.log(result.data);
             const {
                 Title,
                 Year,
@@ -77,7 +77,7 @@ function movie(movieName) {
             } = result.data;
             const rottenRating = Ratings.filter(rating => rating.Source === 'Rotten Tomatoes');
 
-            // console.log(rottenRating[0].Value);
+            console.log(rottenRating);
 
 
             console.log(`${Title} was released in ${Year}.`);
